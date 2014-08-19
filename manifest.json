@@ -1,0 +1,16 @@
+{
+  "name": "driiive | dribbble screen saver",
+  "description": "always show fresh dribbble images in new tab. click image, and add to watch later.",
+  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com https://*.twitter.com https://api.dribbble.com 'unsafe-eval'; object-src 'self'",
+   "chrome_url_overrides": {
+      "newtab": "index.html"
+   },
+  "icons": {
+    "128": "images/icon128.png",
+    "16": "images/icon16.png",
+    "48": "images/icon48.png"
+  },
+  "manifest_version": 2,
+  "permissions": [ "storage", "http://api.dribbble.com/*" ],
+  "version": "0.3"
+}

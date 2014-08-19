@@ -1,0 +1,228 @@
+@import "compass/reset";
+@import "compass/";
+@import "compass/css3";
+@import "compass/css3/transform";
+@import "compass/utilities/general/clearfix";
+
+@import url(https://fonts.googleapis.com/css?family=Dosis:400);
+
+// mixin
+@mixin anims($animation_setting) {
+	-o-animation: #{$animation_setting};
+	-ms-animation: #{$animation_setting};
+	-moz-animation: #{$animation_setting};
+	-webkit-animation: #{$animation_setting};
+}
+
+@mixin keyframes($animation-name) {
+	@-webkit-keyframes $animation-name {@content;}
+	@-moz-keyframes $animation-name {@content;}
+	@keyframes $animation-name {@content;}
+}
+@mixin tranAnim($transition-property){
+	transition-property: $transition-property;
+	transition-duration:0.1s;
+	transition-timing-function:ease-out;
+}
+@mixin tranBasicAnim($transition-property){
+	transition-property: $transition-property;
+	transition-duration:0.4s;
+	transition-timing-function:ease-out;
+}
+
+.clearfix {@include clearfix;}
+$tx_color:#aaa;
+$bg_color:#ea4c89;
+
+
+
+
+// main
+*{
+	margin:0; padding:0;
+	color:$tx_color;
+	font-family: 'Dosis', sans-serif;
+}
+body{
+	background-color: $bg_color;
+}
+#container {
+	width:100%;
+	height:100%;
+	overflow: hidden;
+}
+#shotWrapper{
+	position: fixed;
+	top:0; left:0;
+	width:100%;
+	height:100%;
+	margin:0; padding:0;
+	overflow: hidden;
+	.wrapCol{
+		position: fixed;
+		bottom:0;
+	}
+	@include tranAnim(#{scale, blur});
+	&.onFoucus{}
+	&.outFoucus{
+		@include filter(blur(10px));
+		@include transform(scale(1.2));
+	}
+}
+.anim_img{
+	box-sizing: border-box;
+	height:0;
+	width:100%;
+	background-position: center center;
+	cursor: pointer;
+	@include anims(anim-scale 0.5s ease-in-out);
+	@include transform-origin( center, top );
+	@include tranAnim(box-shadow);
+	&:hover{
+		box-shadow:0px 0px 0px 10px rgba($bg_color,0.8) inset;
+	}
+	.outFoucus .anim_img:hover{
+		cursor: default;
+	}
+	&.watchLater{
+		box-shadow:0px 0px 0px 1px rgba($bg_color,0.9) inset;
+	}
+}
+
+
+@include keyframes(anim-scale) {
+	0%   {@include transform(scale(1, 0.4));}
+	40%  {@include transform(scale(1, 1.2));}
+	60%  {@include transform(scale(1, 1.0));}
+	80%  {@include transform(scale(1, 1.1));}
+	100% {@include transform(scale(1, 1.0));}
+}
+
+
+
+#header{
+	position: fixed;
+	top:10px;
+	right:10px;
+	z-index: 900000;
+	ul{
+		background-color:rgba(0,0,0,0.0);
+		border:1.5px solid $tx_color;
+		padding:6px 18px;
+		@include border-radius(6px);
+		letter-spacing:1px;
+		color:$tx_color;
+		font-family: 'Dosis', sans-serif;
+		@include tranBasicAnim(#{border-color, background-color});
+		&:hover{
+			border-color:white;
+			background-color:rgba(black,0.1);
+		}
+		li{
+			float:left;
+			margin:0 8px;
+			color:$tx_color;
+			@include tranBasicAnim(color);
+			cursor: pointer;
+			&:hover{
+				color:white;
+			}
+		}
+	}
+}
+
+@include keyframes(show-txt) {
+	0%   {color:#fff;}
+	100% {color:$tx_color;}
+}
+
+
+#watchLaterBox{
+	position: fixed;
+	font-size:10px;
+	width:100%;
+	height:100%;
+	top:-0; left:-120%;
+	z-index: 9000;
+	padding:30px 0px;
+	@include tranBasicAnim(opacity);
+	letter-spacing:1px;
+	font-family: 'Dosis', sans-serif;
+	opacity: 0.0;
+	h2{
+		font-size: 50px;
+		margin: 0 auto;
+		margin-bottom: 20px;
+		text-align: center;
+		color: white;
+	}
+	#watchLaters{
+		width:80%;
+		margin: 0 auto;
+		p{
+			@include anims(show-txt 1.5s ease-out);
+			margin-bottom: 8px;
+		}
+	}
+}
+#watchLaterFixBg{
+	position: fixed;
+	top:0; left:-120%;
+	z-index: -1;
+	width:100%;
+	height:100%;
+	background-color:rgba($bg_color,0.8);
+}
+
+
+
+#logger{
+	position: fixed;
+	bottom:10px;
+	font-size:10px;
+	left:10px;
+	width:200px;
+	height: 90%;
+	overflow: hidden;
+	z-index: 9000;
+	background-color:rgba($bg_color,0.8);
+	padding:6px 18px;
+	@include border-radius(6px);
+	letter-spacing:1px;
+	font-family: 'Dosis', sans-serif;
+	p{
+		@include tranBasicAnim(#{position, background-color});
+		@include anims(show-txt 1.5s ease-out);
+		margin-bottom: 8px;
+	}
+	opacity: 0.0;
+	&:hover{
+		opacity: 1;
+	}
+}
+
+
+
+
+.pageload-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+}
+
+.pageload-overlay.show {
+    visibility: visible;
+}
+
+.pageload-overlay svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.pageload-overlay svg path {
+    fill: #fff;
+}
