@@ -25,7 +25,7 @@ CachedDribbbleData.prototype.isOverLoadCashedTime = function(){
 };
 CachedDribbbleData.prototype.setCached = function(pre_data){
 	var dt = {lastLoadTime:this.lastCheckTime, shots:pre_data};
-	localStorage.cachedDribbbleApiData = JSON.stringify(dt);
+	localStorage.setItem("cachedDribbbleApiData", JSON.stringify(dt));
 };
 CachedDribbbleData.prototype.haveWatchLater = function(pre_data){
 	var dt = this.getWatchLater();
@@ -44,11 +44,11 @@ CachedDribbbleData.prototype.pushWatchLater = function(pre_data){
 	var dt = this.getWatchLater();
 	if(dt === null){
 		dt = [pre_data];
-		localStorage.cachedDribbbleWatchLater = JSON.stringify(dt);
+		localStorage.setItem("cachedDribbbleWatchLater", JSON.stringify(dt));
 	}else{
 		if(_.findWhere(dt, {id : pre_data.id}) === undefined){
 			dt.push(pre_data);
-			localStorage.cachedDribbbleWatchLater = JSON.stringify(dt);
+			localStorage.setItem("cachedDribbbleWatchLater", JSON.stringify(dt));
 		}
 	}
 };
@@ -61,7 +61,7 @@ CachedDribbbleData.prototype.removeWatchLater = function(pre_data){
 		return shot.id === pre_data.id;
 	});
 	dt = removeDt;
-	localStorage.cachedDribbbleWatchLater = JSON.stringify(dt);
+	localStorage.setItem("cachedDribbbleWatchLater", JSON.stringify(dt));
 };
 CachedDribbbleData.prototype.getCached = function(){
 	var cached = localStorage.getItem("cachedDribbbleApiData");

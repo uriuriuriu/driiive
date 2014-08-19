@@ -11,6 +11,10 @@
     "48": "images/icon48.png"
   },
   "manifest_version": 2,
-  "permissions": [ "storage", "http://api.dribbble.com/*" ],
+  "permissions": [
+    "storage",
+    "http://api.dribbble.com/*",
+    "unlimitedStorage"
+  ],
   "version": "0.3"
 }
