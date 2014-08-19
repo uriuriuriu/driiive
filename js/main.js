@@ -120,6 +120,7 @@
 				self.loadApiData(pre_endCallback);
 			}else{
 				// finish load
+				self.pager = 0;    // 次回から最新のものを取得させる
 				pre_endCallback();
 			}
 		}).success(function(json) {
@@ -266,7 +267,6 @@
 
 	var beat = new beatJs({bpm:BPM, repeat:true});
 	beat.push(function(){
-		console.log("!");
 		if(beat.cnt % 100 === 0){
 			log("check can get api!");
 			if(!cachedDribbbleData.canLoadCashed() || cachedDribbbleData.isOverLoadCashedTime()){
