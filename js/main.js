@@ -216,11 +216,15 @@
 	};
 
 
-
+// chrome.storage.sync.get("cachedDribbbleApiData", function(obj) {
+// 	console.log(obj);
+// });
 
 /*
 	main
 */
+cachedDribbbleData.syncWatchLater(function(){
+
 	var wlCnt = cachedDribbbleData.watchLaterCnt();
 	$("#watchLaterNum").text(wlCnt);
 	var viewer = new Viewer($('#shotWrapper'));
@@ -269,6 +273,9 @@
 	beat.push(function(){
 		if(beat.cnt % 100 === 0){
 			log("check can get api!");
+			cachedDribbbleData.syncWatchLater(function(){
+				log("synced watch Later!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			});
 			if(!cachedDribbbleData.canLoadCashed() || cachedDribbbleData.isOverLoadCashedTime()){
 				log("!! [angain!!] let's load API data. !!");
 				apiData.loadApiData(function(){
@@ -370,3 +377,4 @@
 		}
 		$("#watchLaterNum").text(cachedDribbbleData.watchLaterCnt());
 	});
+});
