@@ -15,13 +15,16 @@ CachedDribbbleData.prototype.canLoadCashed = function(){
 	return true;
 };
 CachedDribbbleData.prototype.isOverLoadCashedTime = function(){
-	// canLoadTime(20分)を経過してるかcheack
+	// canLoadTime(20分)を経過してるかcheck
 	var canLoad = this.canLoadCashed();
 	if (!canLoad) return false;
 	var dt = this.getCached();
 	this.lastCheckTime = new Date();
 	var cashedDate = new Date(dt.lastLoadTime);
 	return (cashedDate.getTime() + this.canLoadTime < this.lastCheckTime.getTime());
+};
+CachedDribbbleData.prototype.setCachedCheckTime = function(){
+	this.lastCheckTime = new Date();
 };
 CachedDribbbleData.prototype.setCached = function(pre_data){
 	var dt = {lastLoadTime:this.lastCheckTime, shots:pre_data};

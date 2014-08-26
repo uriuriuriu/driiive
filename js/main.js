@@ -111,8 +111,14 @@
 	};
 	ApiData.prototype.loadApiData = function(pre_endCallback){
 		var self = this;
-		$.getJSON(self.getNextURL(), function(data){
+		var url = self.getNextURL();
+		log(url);
+		$.getJSON(url, function(data){
+			cachedDribbbleData.setCachedCheckTime();  // 最終取得時間の更新
 			var cnts = self.item.receiveData(data);
+			// local starage更新
+			cachedDribbbleData.setCached(shots.shotList);
+			// 継続確認
 			var flgHaveNewRead = (cnts.readCnt !== 0);
 			var flgNotMaxReadPage = (self.pager < LIMIT_PAGE_CNT);
 			if(flgNotMaxReadPage && flgHaveNewRead){
@@ -177,7 +183,7 @@
 	};
 	Shots.prototype.shiftSafeData = function(){
 		// 頭から
-		// watchLaterに入って無くいデータを削除
+		// watchLaterに入って無いデータを削除
 	};
 	Shots.prototype.loadImageData = function(){
 		var self = this;
@@ -360,7 +366,6 @@
 		var shotId = parseInt(this.dataset.shotId);
 		var shot = shots.getShot(shotId);
 		log("shotId:" + shotId);
-//		cachedDribbbleData.setCached(shot);
 		if($(this).hasClass("watchLater")){
 			$(this).removeClass("watchLater");
 			cachedDribbbleData.removeWatchLater(shot);
