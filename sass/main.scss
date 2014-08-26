@@ -158,6 +158,7 @@ body{
 	}
 	#watchLaters{
 		width:80%;
+		max-width: 800px;
 		margin: 0 auto;
 		p{
 			@include anims(show-txt 1.5s ease-out);
@@ -207,10 +208,24 @@ body{
 .pageload-overlay {
     position: fixed;
     width: 100%;
-    height: 100%;
+    height: 800%;
     top: 0;
     left: 0;
-    visibility: hidden;
+    z-index:-2;
+//    visibility: hidden;
+    background-image:
+	    url("../images/bgShots01.png"),
+	    url("../images/bgShots02.png"),
+	    url("../images/bgShots03.png");
+    background-position:
+	    top left,
+	    center center,
+	    bottom right;
+	  background-repeat: repeat-y;
+	  background-size: 33.3333% auto;
+	  background-color: $bg_color;
+    background-blend-mode: multiply;
+	@include anims(bg-anim 30s linear infinite);
 }
 
 .pageload-overlay.show {
@@ -225,4 +240,12 @@ body{
 
 .pageload-overlay svg path {
     fill: #fff;
+}
+
+
+
+
+@include keyframes(bg-anim) {
+	0%   {background-position:top 10px left,top -10px center,top right;}
+	100% {background-position:bottom left,bottom center,bottom right;}
 }

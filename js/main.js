@@ -252,19 +252,10 @@
 		});
 	}
 	var flgOpeningEnd = false;
-
-	// white mask show
-	var loader = new SVGLoader(
-		document.getElementById( 'loader' ),
-		{ speedIn : 0, speedOut : 800,
-			easingIn : mina.easeout, easingOut : mina.easein }
-		);
-	loader.show();
-	$("#loader").addClass("show");
+	$(".pageload-overlay").css("top", -(Math.random() * 6 * window.innerHeight));
 
 	// white mask hidden func
 	var openingAnimation = function(){
-		loader.hide();
 		setTimeout( function() {
 			$("#loader").removeClass("show");
 		}, 800 );

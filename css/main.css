@@ -1,5 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Dosis:400);
-/* line 17, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 17, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -21,45 +21,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
@@ -403,9 +403,10 @@ body {
 /* line 159, ../sass/main.scss */
 #watchLaterBox #watchLaters {
   width: 80%;
+  max-width: 800px;
   margin: 0 auto;
 }
-/* line 162, ../sass/main.scss */
+/* line 163, ../sass/main.scss */
 #watchLaterBox #watchLaters p {
   -o-animation: show-txt 1.5s ease-out;
   -ms-animation: show-txt 1.5s ease-out;
@@ -414,7 +415,7 @@ body {
   margin-bottom: 8px;
 }
 
-/* line 168, ../sass/main.scss */
+/* line 169, ../sass/main.scss */
 #watchLaterFixBg {
   position: fixed;
   top: 0;
@@ -425,7 +426,7 @@ body {
   background-color: rgba(234, 76, 137, 0.8);
 }
 
-/* line 179, ../sass/main.scss */
+/* line 180, ../sass/main.scss */
 #logger {
   position: fixed;
   bottom: 10px;
@@ -446,7 +447,7 @@ body {
   font-family: 'Dosis', sans-serif;
   opacity: 0.0;
 }
-/* line 193, ../sass/main.scss */
+/* line 194, ../sass/main.scss */
 #logger p {
   transition-property: position, background-color;
   transition-duration: 0.4s;
@@ -457,34 +458,80 @@ body {
   -webkit-animation: show-txt 1.5s ease-out;
   margin-bottom: 8px;
 }
-/* line 199, ../sass/main.scss */
+/* line 200, ../sass/main.scss */
 #logger:hover {
   opacity: 1;
 }
 
-/* line 207, ../sass/main.scss */
+/* line 208, ../sass/main.scss */
 .pageload-overlay {
   position: fixed;
   width: 100%;
-  height: 100%;
+  height: 800%;
   top: 0;
   left: 0;
-  visibility: hidden;
+  z-index: -2;
+  background-image: url("../images/bgShots01.png"), url("../images/bgShots02.png"), url("../images/bgShots03.png");
+  background-position: top left, center center, bottom right;
+  background-repeat: repeat-y;
+  background-size: 33.3333% auto;
+  background-color: #ea4c89;
+  background-blend-mode: multiply;
+  -o-animation: bg-anim 30s linear infinite;
+  -ms-animation: bg-anim 30s linear infinite;
+  -moz-animation: bg-anim 30s linear infinite;
+  -webkit-animation: bg-anim 30s linear infinite;
 }
 
-/* line 216, ../sass/main.scss */
+/* line 231, ../sass/main.scss */
 .pageload-overlay.show {
   visibility: visible;
 }
 
-/* line 220, ../sass/main.scss */
+/* line 235, ../sass/main.scss */
 .pageload-overlay svg {
   position: absolute;
   top: 0;
   left: 0;
 }
 
-/* line 226, ../sass/main.scss */
+/* line 241, ../sass/main.scss */
 .pageload-overlay svg path {
   fill: #fff;
+}
+
+@-webkit-keyframes bg-anim {
+  /* line 249, ../sass/main.scss */
+  0% {
+    background-position: top 10px left,top -10px center,top right;
+  }
+
+  /* line 250, ../sass/main.scss */
+  100% {
+    background-position: bottom left,bottom center,bottom right;
+  }
+}
+
+@-moz-keyframes bg-anim {
+  /* line 249, ../sass/main.scss */
+  0% {
+    background-position: top 10px left,top -10px center,top right;
+  }
+
+  /* line 250, ../sass/main.scss */
+  100% {
+    background-position: bottom left,bottom center,bottom right;
+  }
+}
+
+@keyframes bg-anim {
+  /* line 249, ../sass/main.scss */
+  0% {
+    background-position: top 10px left,top -10px center,top right;
+  }
+
+  /* line 250, ../sass/main.scss */
+  100% {
+    background-position: bottom left,bottom center,bottom right;
+  }
 }
