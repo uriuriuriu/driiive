@@ -66,16 +66,10 @@
 		this.addCnt++;
 	};
 	Viewer.prototype.removeViewTopItem = function() {
-		// 軽量化のため削除
 		$(this.shotClassName + ":first-child").remove();
 	};
 	Viewer.prototype.canRemoveViewTopItem = function() {
 		return (50 < $(this.shotClassName).length);
-	};
-	Viewer.prototype.removeItem = function(pre_html, pre_height) {
-		for (var i = 0; i < this.appendWrappers.length; i++) {
-			this.appendWrappers[i].html("");
-		}
 	};
 	Viewer.prototype.addWatchLaterItem = function(pre_data) {
 		var w = this.watchLaterWrapper.width();
@@ -274,7 +268,6 @@
 				});
 			}
 		}
-//		log("page : " + apiData.pager + " / yet : " + shots.yetLoadShots.length + " / load : " + shots.loadedShots.length + " / tmp : " + shots.tempShots.length);
 		if(shots.canLoadImageData()){
 			shots.loadImageData();
 		}
@@ -291,6 +284,7 @@
 			var shot = shots.getNextLoadedShot();
 			viewer.addNextItem(shot);
 			if(viewer.canRemoveViewTopItem()){
+				// 軽量化のため削除
 				viewer.removeViewTopItem();
 			}
 		}
