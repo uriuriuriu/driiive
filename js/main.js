@@ -28,6 +28,12 @@
 	};
 
 
+/*
+	global setting
+*/
+	var _set = cachedDribbbleData.getSetting();
+
+
 
 /*
 	viewer
@@ -144,9 +150,18 @@
 		this.loadedShots = [];
 		this.tempShots = [];
 		this.maxShotListCnt = 500;
+		this.hdKey = "image_url";
+		this.sdKey = "image_400_url";
 	}
 	Shots.prototype.getShot = function(pre_id){
 		return _.findWhere(this.shotList, {id : pre_id});
+	};
+	Shots.prototype.getImgKey = function(){
+		if(_set.hd){
+			return this.hdKey;
+		}else{
+			return this.sdKey;
+		}
 	};
 	Shots.prototype.receiveData = function(data){
 		var self = this;
@@ -181,7 +196,7 @@
 	};
 	Shots.prototype.loadImageData = function(){
 		var self = this;
-		var imgUrls = _.pluck(this.yetLoadShots, "image_url");
+		var imgUrls = _.pluck(this.yetLoadShots, self.getImgKey()); // SD,HDどちらか取得
 		this.yetLoadShots = [];
 		$.imgpreload(imgUrls, {
 			each: function() {
@@ -221,6 +236,7 @@
 /*
 	main
 */
+	setSdHdBtn(_set.hd);
 	var wlCnt = cachedDribbbleData.watchLaterCnt();
 	$("#watchLaterNum").text(wlCnt);
 	var viewer = new Viewer($('#shotWrapper'));
@@ -330,6 +346,21 @@
 			closeWatchLater();
 		}
 	});
+
+	function setSdHdBtn(pre_isHd){
+		_set.hd = pre_isHd;
+		var btn = $("#sdHdBtn");
+		if(pre_isHd){
+			btn.text("HD");
+		}else{
+			btn.text("sd");
+		}
+		cachedDribbbleData.setSetting(_set);
+	}
+	function switchSdHdBtn(){
+		setSdHdBtn(!_set.hd);
+	}
+	$("#sdHdBtn").click(switchSdHdBtn);
 
 	$("#watchLaterBtn").click(function(){
 		if($("#shotWrapper").hasClass("onFoucus")){

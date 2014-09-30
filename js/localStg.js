@@ -1,10 +1,6 @@
 (function( window, undefined ) {
-	var CAN_LOAD_TIME = 1000 * 60 * 20; // 20min
-/*
-	localStrage setting
-	- localStorage.team_k001 = "大島優子";
-	- log(localStorage.getItem("team_k001"));
-*/
+var CAN_LOAD_TIME = 1000 * 60 * 20; // 20min
+
 var CachedDribbbleData = function(){
 	this.lastCheckTime = "";
 	this.canLoadTime = CAN_LOAD_TIME;
@@ -29,6 +25,11 @@ CachedDribbbleData.prototype.setCachedCheckTime = function(){
 CachedDribbbleData.prototype.setCached = function(pre_data){
 	var dt = {lastLoadTime:this.lastCheckTime, shots:pre_data};
 	localStorage.setItem("cachedDribbbleApiData", JSON.stringify(dt));
+};
+CachedDribbbleData.prototype.setSetting = function(pre_data){
+	var dt = pre_data;
+	dt.lastLoadTime = new Date();
+	localStorage.setItem("cachedDribbbleSetting", JSON.stringify(dt));
 };
 CachedDribbbleData.prototype.haveWatchLater = function(pre_data){
 	var dt = this.getWatchLater();
@@ -77,6 +78,15 @@ CachedDribbbleData.prototype.getWatchLater = function(){
 	var cached = localStorage.getItem("cachedDribbbleWatchLater");
 	if(cached !== null){
 		cached = JSON.parse(cached);
+	}
+	return cached;
+};
+CachedDribbbleData.prototype.getSetting = function(){
+	var cached = localStorage.getItem("cachedDribbbleSetting");
+	if(cached !== null){
+		cached = JSON.parse(cached);
+	}else{
+		cached = {lastLoadTime:new Date(), hd:true};
 	}
 	return cached;
 };
