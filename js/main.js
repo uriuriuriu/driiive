@@ -186,18 +186,16 @@
 				self.shotList.push(shot);
 				self.yetLoadShots.push(shot);
 				cnts.readCnt++;
-				if(self.maxShotListCnt < self.shotList.length){
-					// 保存最大件数に達した場合は、安全なデータを削除
-					self.shiftSafeData();
-				}
 			}
 		});
+		var shotCnt = self.shotList.length;
+		if(self.maxShotListCnt < shotCnt){
+			// 保存最大件数に達した場合は、頭からデータを削除
+			self.shotList = self.shotList.slice( shotCnt - self.maxShotListCnt, shotCnt);
+			log(shotCnt + " から " + self.shotList.length);
+		}
 		log(cnts);
 		return cnts;
-	};
-	Shots.prototype.shiftSafeData = function(){
-		// 頭から
-		// watchLaterに入って無いデータを削除
 	};
 	Shots.prototype.loadImageData = function(){
 		var self = this;
