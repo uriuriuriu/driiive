@@ -178,6 +178,11 @@
 				cnts.watchLaterCnt++;
 			}
 			if (self.getShot(id) === undefined) {
+				var sdURL = shot[self.sdKey];
+				if(!sdURL){
+					// sd画像が無い場合、標準の高画質画像をsd枠に配置
+					shot[self.sdKey] = shot[self.hdKey];
+				}
 				self.shotList.push(shot);
 				self.yetLoadShots.push(shot);
 				cnts.readCnt++;
