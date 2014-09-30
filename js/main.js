@@ -197,11 +197,16 @@
 	Shots.prototype.loadImageData = function(){
 		var self = this;
 		var imgUrls = _.pluck(this.yetLoadShots, self.getImgKey()); // SD,HDどちらか取得
+		imgUrls = _.compact(imgUrls);
 		this.yetLoadShots = [];
 		$.imgpreload(imgUrls, {
 			each: function() {
 				if($(this).data('loaded')){
-					self.loadedShots.push(_.findWhere(self.shotList, {image_url : this.src}));
+					var keyName = self.getImgKey();
+					var whereHush = {};
+					whereHush[keyName] = this.src;
+//					self.loadedShots.push(_.findWhere(self.shotList, {imgKey : this.src}));
+					self.loadedShots.push(_.findWhere(self.shotList, whereHush));
 				}else{
 					log("can't load " + this.src);
 				}
