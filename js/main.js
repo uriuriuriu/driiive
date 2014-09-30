@@ -252,7 +252,9 @@
 	var shots = new Shots();
 	if(0 < wlCnt){
 		var wlShotsData = cachedDribbbleData.getWatchLater();
-		shots.receiveData(wlShotsData);
+		for (var i = 0; i < wlShotsData.length; i++) {
+			viewer.addNextItem(wlShotsData[i]);
+		}
 	}
 	var url = "https://api.dribbble.com/shots/popular";
 	var apiData = new ApiData(url, shots);
