@@ -251,9 +251,10 @@
 	viewer.initSwitchWrapper(WRAPPER_COL_CNT);
 	var shots = new Shots();
 	if(0 < wlCnt){
-		var wlShotsData = cachedDribbbleData.getWatchLater();
+		var wlShotsData = _.shuffle(cachedDribbbleData.getWatchLater());
 		for (var i = 0; i < wlShotsData.length; i++) {
 			viewer.addNextItem(wlShotsData[i]);
+			if(12<i)break;
 		}
 	}
 	var url = "https://api.dribbble.com/shots/popular";
