@@ -86,7 +86,7 @@ CachedDribbbleData.prototype.getSetting = function(){
 	if(cached !== null){
 		cached = JSON.parse(cached);
 	}else{
-		cached = {lastLoadTime:new Date(), hd:true};
+		cached = {lastLoadTime:new Date(), hd:false};
 	}
 	return cached;
 };
